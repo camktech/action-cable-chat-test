@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  require 'pry'
   def index
     @topics = Topic.all
   end
