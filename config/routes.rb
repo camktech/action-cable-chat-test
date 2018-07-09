@@ -1,11 +1,5 @@
 Rails.application.routes.draw do
-  get 'topics', to: 'topics#index'
-
-  get 'topics/new'
-
-  get 'topics/create'
-
-  get 'topics/:id', to: 'topics#show'
+  resources :topics, only: [:index, :new, :show, :create]
 
   root 'sessions#new'
   post 'login' => 'sessions#create'

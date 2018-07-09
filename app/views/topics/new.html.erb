@@ -1,2 +1,6 @@
-<h1>Topics#new</h1>
-<p>Find me in app/views/topics/new.html.erb</p>
+<h1>New Topic</h1>
+
+<%= render 'form', topic: @topic %>
+
+
+<%= link_to 'All Topics', topics_path %>
