@@ -1,11 +1,32 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @topic.name %>
-</p>
-
-<%= hidden_field_tag 'topic_id', @topic.id %>
+<h1 id='topic-name'>
+  <%= @topic.name.capitalize %>
+</h1>
 
 
-<%= link_to 'All Topics', topics_path %>
+<div id="feed-container">
+
+  <div id="feed">
+    <p class="message">
+      <span class='welcome-message-text'>
+        Welcome to the <%= @topic.name.capitalize %> Room!
+      </span>
+    </p>
+  </div>
+
+  <div id="user-color-container">
+    <div id="user-color-block"></div>
+    <button id="change-user-color-button">Change Color</button>
+  </div>
+
+  <div id="message-input-container">
+    <input type='text' id='message-input'>
+    <button id="send-message-button">Send</button>
+  </div>
+
+</div>
+
+
+<%= hidden_field_tag 'topic-id', @topic.id %>
+<%= hidden_field_tag 'current-user', @current_user.to_json %>

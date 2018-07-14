@@ -1,26 +1,32 @@
-function subscribe(){
-  console.log('createStream')
-  var topicId = $('#topic_id').val();
-  if(topicId){
-    App.topics = App.cable.subscriptions.create({channel: "TopicsChannel", topic_id: topicId}, {
-      connected: function() {
-        // Called when the subscription is ready for use on the server
-      },
-
-      disconnected: function() {
-        // Called when the subscription has been terminated by the server
-      },
-
-      received: function(data) {
-        // Called when there's incoming data on the websocket for this channel
-      }
-    });
-  }
-  else if(App.cable && App.cable.subscriptions.subscriptions.length > 0){
-    unsubscribe();
-  }
+function subscribe(topicId, currentUser){
+  App.topics = App.cable.subscriptions.create({channel: "TopicsChannel", topic_id: topicId, current_user: currentUser}, {
+    received: function(data) {
+      writeToFeed(data);
+    }
+  });
 }
 
 function unsubscribe(){
-  App.cable.subscriptions.subscriptions.forEach((s)=>{s.unsubscribe()});
+  App.cable.subscriptions.subscriptions.forEach((s) => {s.unsubscribe();});
+}
+
+function sendMessage(message, userName, userColor){
+  var messageData = {
+    message: message, 
+    user_name: userName,
+    user_color: userColor,
+    topic_id: $('#topic_id').val()
+  }
+  App.topics.send(messageData);
+}
+
+function writeToFeed(message){
+  $('#feed').append(messageBuilder(message));
+}
+
+function messageBuilder(message_data){
+  return `<p class='message'>
+            <span class='user-name' style='color:${message_data["user_color"]}'>${message_data["user_name"]}: </span>
+            <span class='message-text'>${message_data["message"]}</span>
+          </p>`;
 }

@@ -1,3 +1,58 @@
-// Place all the styles related to the topics controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#topic-name{
+  text-align: center;
+}
+
+#feed-container{
+  border: 2px solid #aaa;
+  width: 85%;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 15px;
+
+  #feed{
+    height: 400px;
+    text-align: right;
+    overflow: scroll;
+    border: 1px solid #ddd;
+
+
+    .message{
+      margin-right: 20px;
+      font-size: 16px;
+      .user-name{
+        font-weight: bold;
+      }
+
+      .welcome-message-text{
+        font-weight: bold;
+        font-size: 12px;
+      }
+
+      .message-text{
+
+      }
+    }
+  }
+
+  #message-input-container{
+    margin-top: 20px;
+    float: right;
+    #message-input{
+
+    }
+
+    #send-message-button{
+
+    }
+  }
+
+  #user-color-container{
+    margin-top: 20px;
+    float: right;
+    #user-color-block{
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+    }
+  }
+}

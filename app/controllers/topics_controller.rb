@@ -15,6 +15,7 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find_by(id: params[:id])
+    @current_user = current_user
     if @topic.nil?
       redirect_to topics_url
     end
